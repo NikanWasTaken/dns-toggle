@@ -1,0 +1,21 @@
+{
+	"name": "dns-toggle",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.ts",
+	"scripts": {
+		"clean": "rimraf dist",
+		"prebuild": "npm run clean",
+		"build": "tsc",
+		"fullbuild": "tsc && npm run clean"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^18.11.18",
+		"rimraf": "^3.0.2",
+		"ts-node": "^10.9.1"
+	}
+}
+
