@@ -3,15 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
 const node_util_1 = require("node:util");
 const config_json_1 = require("./config.json");
+const default_port = 'Wi-Fi';
 const exec = (0, node_util_1.promisify)(child_process_1.exec);
 if (!config_json_1.dns_servers?.length) {
     throw Error('You need to have atleast one DNS server in your config file.');
 }
-async function getDNS(port = config_json_1.default_port) {
+async function getDNS(port = default_port) {
     const { stdout } = await exec(`networksetup -getdnsservers ${port}`);
     return stdout;
 }
-async function checkDNS(port = config_json_1.default_port) {
+async function checkDNS(port = default_port) {
     const dns = await getDNS(port);
     const activeDns = dns.split('\n');
     activeDns.pop();
@@ -23,7 +24,7 @@ async function checkDNS(port = config_json_1.default_port) {
         return 'OFF';
     }
 }
-async function toggleDNS(state, port = config_json_1.default_port) {
+async function toggleDNS(state, port = default_port) {
     switch (state) {
         case 'OFF': {
             const {} = await exec(`networksetup -setdnsservers ${port} ${config_json_1.dns_servers.join(' ')}`).catch(() => {
@@ -43,7 +44,7 @@ async function toggleDNS(state, port = config_json_1.default_port) {
         }
     }
 }
-async function main(port = config_json_1.default_port) {
+async function main(port = default_port) {
     const state = await checkDNS(port);
     const response = await toggleDNS(state, port);
     response;

@@ -1,5 +1,4 @@
 {
-	"dns_servers": [],
-	"port": null
+	"dns_servers": ["1.1.1.1"]
 }
 

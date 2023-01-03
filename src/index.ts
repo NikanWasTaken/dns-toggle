@@ -1,6 +1,6 @@
 import { exec as Exec } from 'child_process';
 import { promisify } from 'node:util';
-import { dns_servers, port } from './config.json';
+import { dns_servers } from './config.json';
 const default_port = 'Wi-Fi';
 
 const exec = promisify(Exec);
@@ -70,6 +70,6 @@ async function main(port: string = default_port) {
 }
 
 (async () => {
-	await main(port);
+	await main();
 })();
 
