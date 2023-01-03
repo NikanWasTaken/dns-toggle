@@ -1,6 +1,6 @@
 import { exec as Exec } from 'child_process';
 import { promisify } from 'node:util';
-import { dns_servers, port } from './config.json';
+import { dns_servers } from './config.json';
 const default_port = 'Wi-Fi';
 
 const exec = promisify(Exec);
@@ -37,16 +37,16 @@ async function toggleDNS(state: 'ON' | 'OFF', port: string = default_port) {
 
 			return {
 				state: 'SET',
-				header: 'DNS servers set successfully',
+				header: 'Shecan was turned on',
 				servers: dns_servers.join(' - '),
 			};
 		}
 		case 'ON': {
 			const {} = await exec(`networksetup -setdnsservers ${port} empty`).catch(() => {
-				throw Error('Something broke whilst trying to clear the dns servers.');
+				throw Error('Something broke whilst trying to turn shecan off');
 			});
 
-			return { state: 'CLEAR', header: 'DNS servers cleared successfully' };
+			return { state: 'CLEAR', header: 'Shecan was turned off' };
 		}
 	}
 }
@@ -70,6 +70,6 @@ async function main(port: string = default_port) {
 }
 
 (async () => {
-	await main(port);
+	await main();
 })();
 

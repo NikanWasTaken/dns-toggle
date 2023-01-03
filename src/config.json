@@ -1,5 +1,4 @@
 {
-	"dns_servers": [],
-	"port": null
+	"dns_servers": ["178.22.122.100", "185.51.200.2"]
 }
 
