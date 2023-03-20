@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^18.11.18",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0"
   }
 }
